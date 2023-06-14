@@ -1,0 +1,19 @@
+<!-- app/views/pizzas/index.html.erb -->
+
+<h2>All Pizzas</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Toppings</th>
+  </tr>
+
+  <% @pizzas.each do |pizza| %>
+    <tr>
+      <td><%= pizza.name %></td>
+      <td><%= pizza.toppings.map(&:name).join(', ') %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= button_to 'Create a new pizza', new_pizza_path, method: :get, class: 'button-green' %>
