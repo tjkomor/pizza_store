@@ -24,4 +24,17 @@ RSpec.feature "Topping management", type: :feature do
     expect(page).to have_text("Topping was successfully updated.")
     expect(page).to have_text("Onions")
   end
+
+  scenario "User deletes a topping", js: true do
+    topping = Topping.create!(name: "Mushrooms")
+
+    visit "/toppings"
+
+    # click_button 'Delete'
+    within("#topping_#{topping.id}") do
+      click_button 'Delete'
+    end
+
+    expect(page).to_not have_text("Mushrooms")
+  end
 end

@@ -10,11 +10,10 @@
 
   <tbody>
     <% @toppings.each do |topping| %>
-      <tr>
+      <tr id="topping_<%= topping.id %>">
         <td><%= topping.name %></td>
-        <td><%= link_to 'Show', topping %></td>
-        <td><%= link_to 'Edit', edit_topping_path(topping) %></td>
-        <td><%= button_to 'Destroy', topping_path(topping), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Edit', edit_topping_path(topping), method: :get, class: "btn btn-edit" %></td>
+        <td><%= button_to 'Delete', topping, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-destroy" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +21,5 @@
 
 <br>
 
-<%= link_to 'New Topping', new_topping_path %>
+<%= button_to 'Create a new topping', new_topping_path, method: :get, class: 'button-green' %>
+
