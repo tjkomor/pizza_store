@@ -1,22 +1,22 @@
-<h1>Create a New Pizza</h1>
+# <h1>Create a New Pizza</h1>
 
-<%= form_with(model: @pizza, local: true) do |form| %>
+# <%= form_with(model: @pizza, local: true) do |form| %>
 
-  <div class="field">
-    <%= form.label :name, 'Pizza Name' %>
-    <%= form.text_field :name %>
-  </div>
+#   <div class="field">
+#     <%= form.label :name, 'Pizza Name' %>
+#     <%= form.text_field :name %>
+#   </div>
 
-  <div class="field">
-    <%= form.label :toppings, 'Toppings' %>
-    <% Pizza::TOPPINGS.each do |topping| %>
-      <%= form.check_box :topping_names, { multiple: true }, topping, nil %>
-      <%= topping %>
-    <% end %>
-  </div>
+#   <div class="field">
+#     <%= form.label :toppings, 'Toppings' %>
+#     <% Pizza::TOPPINGS.each do |topping| %>
+#       <%= form.check_box :topping_names, { multiple: true }, topping, nil %>
+#       <%= topping %>
+#     <% end %>
+#   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+#   <div class="actions">
+#     <%= form.submit %>
+#   </div>
 
-<% end %>
+# <% end %>
