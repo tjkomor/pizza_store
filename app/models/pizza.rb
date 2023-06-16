@@ -3,7 +3,7 @@ class Pizza < ApplicationRecord
   has_many :toppings, through: :pizza_toppings
   
   validates :name, presence: true, uniqueness: true, on: [:create, :update]
-  validate :unique_toppings_combination, on: [:create, :update]
+  validate :unique_toppings_combination
 
   before_save :downcase_name
 

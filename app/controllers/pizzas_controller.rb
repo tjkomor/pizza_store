@@ -29,10 +29,7 @@ class PizzasController < ApplicationController
   end
 
   def update
-    @pizza = Pizza.new(pizza_params)
-
-    if @pizza.save
-      @pizza.update(pizza_params)
+    if @pizza.update(pizza_params)
       redirect_to @pizza, notice: 'Pizza was successfully updated.'
     else
       render :edit
@@ -41,7 +38,7 @@ class PizzasController < ApplicationController
 
   def destroy
     @pizza.destroy
-    redirect_to pizzas_url, notice: 'Pizza was successfully destroyed.'
+    redirect_to pizzas_url, notice: 'Pizza was successfully deleted.'
   end
 
   def home

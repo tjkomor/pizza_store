@@ -6,7 +6,7 @@
     <%= link_to 'Toppings Manager', toppings_path, class: 'btn btn-primary' %>
   </div>
 
-  <%= form_with(model: @pizza, local: true) do |form| %>
+  <%= form_with(model: @pizza, url: pizza_path(@pizza), local: true) do |form| %>
     <% if @pizza.errors.any? %>
       <div id="error_explanation" class="alert alert-danger">
         <h4><%= pluralize(@pizza.errors.count, 'error') %> prohibited this pizza from being saved:</h4>
