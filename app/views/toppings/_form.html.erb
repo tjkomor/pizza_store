@@ -4,9 +4,9 @@
       <h2><%= pluralize(topping.errors.count, "error") %> prohibited this topping from being saved:</h2>
 
       <ul>
-      <% topping.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% topping.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -16,7 +16,7 @@
     <%= form.text_field :name %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions" style="padding-top: 10px;">
+    <%= form.submit "Create Topping", class: "btn btn-success px-4 py-2" %>
   </div>
 <% end %>
