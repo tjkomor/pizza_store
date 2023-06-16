@@ -1,7 +1,17 @@
 <div class="container mt-5">
-  <h1 class="mb-4">Edit Pizza</h1>
+  <h1>Edit Pizza</h1>
 
   <%= form_with(model: @pizza, local: true) do |form| %>
+    <% if @pizza.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h4><%= pluralize(@pizza.errors.count, 'error') %> prohibited this pizza from being saved:</h4>
+        <ul>
+          <% @pizza.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
     <div class="form-group">
       <%= form.label :name, 'Pizza Name' %>
@@ -12,7 +22,7 @@
       <%= form.label :topping_ids, 'Toppings' %>
       <% @toppings.each do |topping| %>
         <div class="form-check">
-          <%= check_box_tag 'pizza[topping_ids][]', topping.id, @pizza.toppings.exists?(topping.id), class: 'form-check-input' %>
+          <%= check_box_tag 'pizza[topping_ids][]', topping.id, @pizza.toppings.exists?(topping.id) %>
           <%= label_tag "pizza_topping_#{topping.id}", topping.name, class: 'form-check-label' %>
         </div>
       <% end %>
@@ -21,6 +31,5 @@
     <div class="form-group">
       <%= form.submit "Update Pizza", class: "btn btn-primary" %>
     </div>
-
   <% end %>
 </div>

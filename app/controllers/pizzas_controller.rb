@@ -14,6 +14,7 @@ class PizzasController < ApplicationController
   end
 
   def create
+    @toppings = Topping.all    
     @pizza = Pizza.new(pizza_params)
     if @pizza.save
       redirect_to @pizza, notice: 'Pizza was successfully created.'
@@ -29,10 +30,12 @@ class PizzasController < ApplicationController
 
   def update
     @toppings = Topping.all
-    if @pizza.update(pizza_params)
+    @pizza = Pizza.new(pizza_params)
+
+    if @pizza.save
+      @pizza.update(pizza_params)
       redirect_to @pizza, notice: 'Pizza was successfully updated.'
     else
-      puts @pizza.errors.full_messages.to_sentence
       render :edit
     end
   end

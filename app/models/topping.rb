@@ -16,7 +16,7 @@ class Topping < ApplicationRecord
         return topping, 'Topping already exists and is in stock.'
       end
     else
-      topping = new(topping_params)
+      topping = Topping.new(topping_params)
       if topping.save
         return topping, 'Topping was successfully created.'
       else

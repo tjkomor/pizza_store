@@ -3,6 +3,17 @@
 
   <%= form_with(model: @pizza, local: true) do |form| %>
 
+    <% if @pizza.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h4><%= pluralize(@pizza.errors.count, 'error') %> prohibited this pizza from being saved:</h4>
+        <ul>
+          <% @pizza.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <div class="form-group">
       <%= form.label :name, 'Pizza Name' %>
       <%= form.text_field :name, class: "form-control" %>
@@ -10,9 +21,9 @@
 
     <div class="form-group">
       <%= form.label :topping_ids, 'Toppings' %>
-      <% Topping.all.each do |topping| %>
+      <% @toppings.all.each do |topping| %>
         <div class="form-check">
-          <%= form.check_box :topping_ids, { multiple: true, checked: false }, topping.id, nil, class: "form-check-input" %>
+          <%= form.check_box :topping_ids, { multiple: true, checked: false }, topping.id, nil%>
           <%= form.label topping.name, class: "form-check-label" %>
         </div>
       <% end %>

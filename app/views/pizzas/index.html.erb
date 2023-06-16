@@ -6,6 +6,12 @@
     <%= link_to 'Menu', '/', class: 'btn btn-secondary' %>
   </div>
 
+  <% if @pizzas.any? { |pizza| pizza.toppings.any? { |topping| !topping.in_stock } } %>
+    <div class="alert alert-warning" role="alert">
+      The toppings in red are currently out of stock.
+    </div>
+  <% end %>
+
   <table class="table">
     <thead>
       <tr>
