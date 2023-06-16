@@ -23,13 +23,16 @@ class PizzasController < ApplicationController
   end
 
   def edit
+    @pizza = Pizza.find(params[:id])
     @toppings = Topping.all
   end
 
   def update
+    @toppings = Topping.all
     if @pizza.update(pizza_params)
       redirect_to @pizza, notice: 'Pizza was successfully updated.'
     else
+      puts @pizza.errors.full_messages.to_sentence
       render :edit
     end
   end
@@ -37,6 +40,10 @@ class PizzasController < ApplicationController
   def destroy
     @pizza.destroy
     redirect_to pizzas_url, notice: 'Pizza was successfully destroyed.'
+  end
+
+  def home
+    @pizzas = Pizza.all
   end
 
   private

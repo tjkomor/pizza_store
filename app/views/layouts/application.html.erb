@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pizza Store</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   </head>
-
   <body>
-    <header>
-      <h1>Pizza Store</h1>
-    </header>
-
     <%= yield %>
   </body>
 </html>

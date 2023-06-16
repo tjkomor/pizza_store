@@ -13,15 +13,12 @@ class ToppingsController < ApplicationController
   end
 
   def create
-    @topping = Topping.new(topping_params)
-    if @topping.save
-      redirect_to @topping, notice: 'Topping was successfully created.'
-    else
-      render :new
-    end
+    @topping, notice = Topping.create_or_update(topping_params)
+    redirect_to @topping, notice: notice
   end
 
   def edit
+    @toppings = Topping.all
   end
 
   def update
@@ -34,8 +31,8 @@ class ToppingsController < ApplicationController
 
   def destroy
     @topping = Topping.find(params[:id])
-    @topping.destroy
-    redirect_to toppings_path, notice: 'Topping was successfully deleted'
+    @topping.update(in_stock: false)
+    redirect_to toppings_path, notice: 'Topping was successfully marked as out of stock'
   end
 
   private

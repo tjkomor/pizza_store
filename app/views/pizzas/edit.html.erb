@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <h1 class="mb-4">Create a New Pizza</h1>
+  <h1 class="mb-4">Edit Pizza</h1>
 
   <%= form_with(model: @pizza, local: true) do |form| %>
 
@@ -10,16 +10,16 @@
 
     <div class="form-group">
       <%= form.label :topping_ids, 'Toppings' %>
-      <% Topping.all.each do |topping| %>
+      <% @toppings.each do |topping| %>
         <div class="form-check">
-          <%= form.check_box :topping_ids, { multiple: true, checked: false }, topping.id, nil, class: "form-check-input" %>
-          <%= form.label topping.name, class: "form-check-label" %>
+          <%= check_box_tag 'pizza[topping_ids][]', topping.id, @pizza.toppings.exists?(topping.id), class: 'form-check-input' %>
+          <%= label_tag "pizza_topping_#{topping.id}", topping.name, class: 'form-check-label' %>
         </div>
       <% end %>
     </div>
 
     <div class="form-group">
-      <%= form.submit "Create Pizza", class: "btn btn-primary" %>
+      <%= form.submit "Update Pizza", class: "btn btn-primary" %>
     </div>
 
   <% end %>

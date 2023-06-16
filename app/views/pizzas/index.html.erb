@@ -1,19 +1,44 @@
-<!-- app/views/pizzas/index.html.erb -->
+<div class="container mt-5">
+  <h2 class="mb-4">My Pizzas</h2>
 
-<h2>All Pizzas</h2>
+  <div class="mb-3">
+    <%= link_to 'Toppings Manager', toppings_path, class: 'btn btn-primary' %>
+    <%= link_to 'Menu', '/', class: 'btn btn-secondary' %>
+  </div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Toppings</th>
-  </tr>
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 30%;">Name</th>
+        <th style="width: 40%;">Toppings</th>
+        <th style="width: 30%;">Actions</th>
+      </tr>
+    </thead>
 
-  <% @pizzas.each do |pizza| %>
-    <tr>
-      <td><%= pizza.name %></td>
-      <td><%= pizza.toppings.map(&:name).join(', ') %></td>
-    </tr>
-  <% end %>
-</table>
+    <tbody>
+      <% @pizzas.each do |pizza| %>
+        <tr>
+          <td><%= pizza.name %></td>
+          <td>
+            <% pizza.toppings.each do |topping| %>
+              <% if topping.in_stock %>
+                <%= topping.name %>
+              <% else %>
+                <span style="color: red;"><%= topping.name %></span>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Actions">
+              <%= link_to 'Edit', edit_pizza_path(pizza), class: 'btn btn-primary' %>
+              <span class="mx-1"></span>
+              <%= button_to 'Delete', pizza, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= button_to 'Create a new pizza', new_pizza_path, method: :get, class: 'button-green' %>
+  <%= button_to 'Create a new pizza', new_pizza_path, method: :get, class: 'btn btn-success' %>
+</div>

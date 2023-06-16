@@ -1,5 +1,21 @@
-<h1>Edit Topping</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Edit Topping</h1>
 
-<%= render 'form', topping: @topping %>
+  <%= form_with(model: @topping, local: true) do |form| %>
 
-<%= link_to 'Back', toppings_path %>
+    <div class="form-group">
+      <%= form.label :name, 'Topping Name' %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.check_box :in_stock, class: "form-check-input" %>
+      <%= form.label :in_stock, 'In Stock', class: "form-check-label" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit "Update Topping", class: "btn btn-primary" %>
+    </div>
+
+  <% end %>
+</div>

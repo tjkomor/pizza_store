@@ -1,9 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="container mt-5">
+  <% if notice %>
+    <p class="notice"><%= notice %></p>
+  <% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @topping.name %>
-</p>
+  <div class="card">
+    <div class="card-header">
+      Topping Details
+    </div>
+    <div class="card-body">
+      <p>
+        <strong>Name:</strong>
+        <%= @topping.name %>
+      </p>
 
-<%= link_to 'Edit', edit_topping_path(@topping) %> |
-<%= link_to 'Back', toppings_path %>
+      <div class="text-center">
+        <%= link_to 'Edit', edit_topping_path(@topping), class: 'btn btn-primary' %>
+        <%= link_to 'Back', toppings_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>

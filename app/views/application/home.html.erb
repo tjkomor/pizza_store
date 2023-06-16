@@ -1,6 +1,33 @@
-<h1>Welcome to The Pizza Store!</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Welcome to The Pizza Store!</h1>
 
-<ul>
-  <li><%= link_to 'Topping Menu', toppings_path %></li>
-  <li><%= link_to 'Pizza Menu', pizzas_path %></li>
-</ul>
+  <p>To update the menu, please use our Topping and Pizza managers!</p>
+
+  <ul class="nav nav-pills mb-4">
+    <li class="nav-item">
+      <%= link_to 'Topping Manager', toppings_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Pizza Manager', pizzas_path, class: 'nav-link' %>
+    </li>
+  </ul>
+
+  <h2 class="mb-3">Menu</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Toppings</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pizzas.each do |pizza| %>
+        <tr>
+          <td><%= pizza.name %></td>
+          <td><%= pizza.toppings.map(&:name).join(', ') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

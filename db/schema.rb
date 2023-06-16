@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_234804) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_012840) do
   create_table "pizza_toppings", force: :cascade do |t|
     t.integer "pizza_id", null: false
     t.integer "topping_id", null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_234804) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "in_stock", default: true
   end
 
   add_foreign_key "pizza_toppings", "pizzas"

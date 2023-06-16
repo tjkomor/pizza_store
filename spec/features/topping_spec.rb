@@ -30,11 +30,14 @@ RSpec.feature "Topping management", type: :feature do
 
     visit "/toppings"
 
-    # click_button 'Delete'
     within("#topping_#{topping.id}") do
       click_button 'Delete'
     end
 
-    expect(page).to_not have_text("Mushrooms")
+    visit "/pizzas"
+    
+    within("#topping_#{topping.id}") do
+      expect(page).to have_selector('span', text: topping.name, style: 'color: red;')
+    end
   end
 end
