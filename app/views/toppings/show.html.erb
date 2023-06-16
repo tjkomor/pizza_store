@@ -1,6 +1,8 @@
 <div class="container mt-5">
-  <% if notice %>
-    <p class="notice"><%= notice %></p>
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <%= flash[:notice] %>
+    </div>
   <% end %>
 
   <div class="card">
@@ -14,9 +16,11 @@
       </p>
 
       <div class="text-center">
-        <%= link_to 'Menu', '/', class: 'btn btn-secondary' %>
-        <%= link_to 'Pizza Manager', pizzas_path, class: 'btn btn-secondary' %>
-        <%= link_to 'Topping Manager', toppings_path, class: 'btn btn-secondary' %>
+        <div class="mb-3">
+          <%= link_to 'Menu', '/', class: 'btn btn-secondary' %>
+          <%= link_to 'Pizza Manager', pizzas_path, class: 'btn btn-primary' %>
+          <%= link_to 'Toppings Manager', toppings_path, class: 'btn btn-primary' %>
+        </div>
       </div>
     </div>
   </div>

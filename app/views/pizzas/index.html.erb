@@ -1,12 +1,12 @@
 <div class="container mt-5">
-  <h2 class="mb-4">My Pizzas</h2>
+  <h2 class="mb-4">Pizza Manager</h2>
 
   <div class="mb-3">
-    <%= link_to 'Toppings Manager', toppings_path, class: 'btn btn-primary' %>
     <%= link_to 'Menu', '/', class: 'btn btn-secondary' %>
+    <%= link_to 'Toppings Manager', toppings_path, class: 'btn btn-primary' %>
   </div>
 
-  <% if @pizzas.any? { |pizza| pizza.toppings.any? { |topping| !topping.in_stock } } %>
+  <% if @pizzas.any? { |pizza| pizza.out_of_stock_toppings.count > 0 } %>
     <div class="alert alert-warning" role="alert">
       The toppings in red are currently out of stock.
     </div>
@@ -24,14 +24,15 @@
     <tbody>
       <% @pizzas.each do |pizza| %>
         <tr>
-          <td><%= pizza.name %></td>
+          <td><%= pizza.name.capitalize %></td>
           <td>
-            <% pizza.toppings.each do |topping| %>
-              <% if topping.in_stock %>
-                <%= topping.name %>
-              <% else %>
-                <span style="color: red;"><%= topping.name %></span>
-              <% end %>
+            <% pizza.in_stock_toppings.each do |topping| %>
+              <%= topping.name.capitalize %>
+            <% end %>
+
+            <% unless pizza.out_of_stock_toppings.empty? %>
+              <br>
+              <span style="color: red;">Out of stock: <%= pizza.out_of_stock_toppings.map(&:name).join(', ') %></span>
             <% end %>
           </td>
           <td>

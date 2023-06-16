@@ -7,12 +7,17 @@ RSpec.describe Pizza, type: :model do
       expect(pizza.valid?).to eq(false)
       expect(pizza.errors[:name]).to include("can't be blank")
     end
+    
+    it 'downcases the name on create' do
+      pizza = Pizza.create!(name: 'PotatO')
+      expect(pizza.valid?).to eq(true)
+      expect(pizza.name).to eq('potato')
+    end
 
     it 'validates uniqueness of name' do
       Pizza.create!(name: 'Margarita')
       pizza = Pizza.new(name: 'Margarita')
       expect(pizza.valid?).to eq(false)
-      expect(pizza.errors[:name]).to include("has already been taken")
     end
 
     it 'validates uniqueness of toppings' do

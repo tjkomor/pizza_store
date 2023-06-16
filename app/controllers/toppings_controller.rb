@@ -22,17 +22,19 @@ class ToppingsController < ApplicationController
   end
 
   def update
+    @topping = Topping.find(params[:id])
     if @topping.update(topping_params)
-      redirect_to @topping, notice: 'Topping was successfully updated.'
+      flash[:notice] = 'Topping was successfully updated.'
     else
-      render :edit
+      flash[:alert] = 'There was an error updating the topping.'
     end
+    redirect_to toppings_path
   end
 
   def destroy
     @topping = Topping.find(params[:id])
-    @topping.update(in_stock: false)
-    redirect_to toppings_path, notice: 'Topping was successfully marked as out of stock'
+    @topping.destroy
+    redirect_to toppings_path, notice: 'Topping was successfully deleted and removed from associated pizzas'
   end
 
   private
@@ -42,6 +44,6 @@ class ToppingsController < ApplicationController
   end
 
   def topping_params
-    params.require(:topping).permit(:name)
+    params.require(:topping).permit(:name, :in_stock)
   end
 end

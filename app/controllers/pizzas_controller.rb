@@ -1,5 +1,6 @@
 class PizzasController < ApplicationController
   before_action :set_pizza, only: [:show, :edit, :update, :destroy]
+  before_action :set_toppings, only: [:new, :create, :edit, :update]
 
   def index
     @pizzas = Pizza.all
@@ -10,14 +11,14 @@ class PizzasController < ApplicationController
 
   def new
     @pizza = Pizza.new
-    @toppings = Topping.all
   end
 
   def create
-    @toppings = Topping.all    
     @pizza = Pizza.new(pizza_params)
+    
     if @pizza.save
-      redirect_to @pizza, notice: 'Pizza was successfully created.'
+      flash[:notice] = 'Pizza was successfully created.'
+      redirect_to @pizza
     else
       render :new
     end
@@ -25,11 +26,9 @@ class PizzasController < ApplicationController
 
   def edit
     @pizza = Pizza.find(params[:id])
-    @toppings = Topping.all
   end
 
   def update
-    @toppings = Topping.all
     @pizza = Pizza.new(pizza_params)
 
     if @pizza.save
@@ -53,6 +52,10 @@ class PizzasController < ApplicationController
 
   def set_pizza
     @pizza = Pizza.find(params[:id])
+  end
+  
+  def set_toppings
+    @toppings = Topping.all
   end
 
   def pizza_params

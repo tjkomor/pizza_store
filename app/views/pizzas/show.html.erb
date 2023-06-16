@@ -1,6 +1,12 @@
 <div class="container mt-5">
   <h1 class="display-4"><%= @pizza.name %></h1>
 
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
   <h2 class="mt-4">Toppings</h2>
   <ul class="list-group mt-3">
     <% @pizza.toppings.each do |topping| %>
@@ -9,8 +15,8 @@
   </ul>
 
   <div class="mt-5">
-    <%= link_to 'Topping Manager', toppings_path, class: 'btn btn-primary' %> |
-    <%= link_to 'Pizza Manager', pizzas_path, class: 'btn btn-secondary' %> |
     <%= link_to 'Menu', '/', class: 'btn btn-secondary' %>
+    <%= link_to 'Pizza Manager', pizzas_path, class: 'btn btn-primary' %>
+    <%= link_to 'Topping Manager', toppings_path, class: 'btn btn-primary' %>
   </div>
 </div>

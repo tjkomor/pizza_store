@@ -1,6 +1,12 @@
 <div class="container mt-5">
   <h1 class="mb-4">Edit Topping</h1>
 
+  <div class="mb-3">
+    <%= link_to 'Menu', '/', class: 'btn btn-secondary' %>
+    <%= link_to 'Pizza Manager', toppings_path, class: 'btn btn-primary' %>
+    <%= link_to 'Toppings Manager', toppings_path, class: 'btn btn-primary' %>
+  </div>
+
   <%= form_with(model: @topping, local: true) do |form| %>
 
     <div class="form-group">

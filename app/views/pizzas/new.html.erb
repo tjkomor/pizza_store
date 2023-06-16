@@ -1,6 +1,11 @@
 <div class="container mt-5">
   <h1 class="mb-4">Create a New Pizza</h1>
 
+  <div class="mb-3">
+    <%= link_to 'Menu', '/', class: 'btn btn-secondary' %>
+    <%= link_to 'Toppings Manager', toppings_path, class: 'btn btn-primary' %>
+  </div>
+
   <%= form_with(model: @pizza, local: true) do |form| %>
 
     <% if @pizza.errors.any? %>
@@ -21,16 +26,20 @@
 
     <div class="form-group">
       <%= form.label :topping_ids, 'Toppings' %>
-      <% @toppings.all.each do |topping| %>
-        <div class="form-check">
-          <%= form.check_box :topping_ids, { multiple: true, checked: false }, topping.id, nil%>
-          <%= form.label topping.name, class: "form-check-label" %>
+      <% @toppings.sorted_by_stock_and_name.each do |topping| %>
+        <div class="form-check" id="topping_id_<%= topping.id %>">
+          <%= form.check_box :topping_ids, { multiple: true, checked: false }, topping.id, nil %>
+          <% if topping.in_stock %>
+            <%= form.label topping.name, class: "form-check-label" %>
+          <% else %>
+            <%= form.label "#{topping.name} (out of stock)", class: "form-check-label", style: "color: red;" %>
+          <% end %>
         </div>
       <% end %>
     </div>
 
     <div class="form-group">
-      <%= form.submit "Create Pizza", class: "btn btn-primary" %>
+      <%= form.submit "Create Pizza", class: "btn btn-success" %>
     </div>
 
   <% end %>
