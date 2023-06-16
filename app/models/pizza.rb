@@ -13,7 +13,6 @@ class Pizza < ApplicationRecord
                           .select { |pizza| pizza.topping_ids.sort == topping_ids.sort }
                           .any?
     errors.add(:base, 'A pizza with this combination of toppings already exists.') if matching_pizza
-    errors.delete(:base) unless matching_pizza
   end
 
   def in_stock_toppings
