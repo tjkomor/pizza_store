@@ -1,24 +1,37 @@
-# README
+# Pizza Store Rails App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple Rails application to manage pizzas and their toppings.
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+Before you begin, ensure you have met the following requirements:
 
-* System dependencies
+* You have installed Ruby on Rails [(https://rubyonrails.org/)].
 
-* Configuration
+## Installing Pizza Store Rails App
 
-* Database creation
+To install the Pizza Store Rails App, follow these steps:
 
-* Database initialization
+1. Clone the repository:
+  `git clone https://github.com/username/pizza_store.git`
 
-* How to run the test suite
+2. Navigate to the project directory:
+  `cd pizza_store`
 
-* Services (job queues, cache servers, search engines, etc.)
+3. Install the required gems:
+  `bundle install`
 
-* Deployment instructions
+4. Setup the database:
+  `rails db:migrate`
 
-* ...
+## Using Pizza Store Rails App
+
+To start the server, navigate to the project directory and run:
+  `rails server`
+
+Then, open your web browser and navigate to `localhost:3000`.
+
+## Running Tests
+
+This project uses RSpec for testing. To run the tests, navigate to the project directory and run:
+  `bundle exec rspec`
