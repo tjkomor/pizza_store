@@ -85,6 +85,17 @@ RSpec.describe Topping, type: :model do
     end
   end
 
+  describe ".sorted_by_stock_and_name" do
+    it "sorts toppings first by stock status and then by name" do
+      topping1 = Topping.create(name: 'Mushrooms', in_stock: true)
+      topping2 = Topping.create(name: 'Anchovies', in_stock: true)
+      topping3 = Topping.create(name: 'Olives', in_stock: false)
+      topping4 = Topping.create(name: 'Bananas', in_stock: false)
+
+      expect(Topping.sorted_by_stock_and_name).to eq([topping2, topping1, topping4, topping3])
+    end
+  end
+
   describe 'Delete' do 
     it "is removed from pizzas when deleted" do
       topping = Topping.create(name: 'Mushrooms', in_stock: true)
