@@ -84,6 +84,18 @@ RSpec.describe Topping, type: :model do
       end
     end
   end
+
+  describe 'Delete' do 
+    it "is removed from pizzas when deleted" do
+      topping = Topping.create(name: 'Mushrooms', in_stock: true)
+      pizza = Pizza.create(name: 'Veggie', topping_ids: [topping.id])
+      topping.destroy
+
+      pizza.reload
+    
+      expect(pizza.toppings).to_not include(topping)
+    end
+  end
 end
 
 
