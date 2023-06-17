@@ -21,6 +21,12 @@ RSpec.describe Topping, type: :model do
     
     expect(topping).to_not be_valid
   end
+
+  it 'downcases the name on create' do
+    topping = Topping.create!(name: 'PotatO')
+    expect(topping.valid?).to eq(true)
+    expect(topping.name).to eq('potato')
+  end
   
   it 'is not valid with a duplicate name with different capitalization' do
     Topping.create!(name: 'Pepperoni')
