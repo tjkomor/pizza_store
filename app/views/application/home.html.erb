@@ -24,8 +24,8 @@
     <tbody>
       <% @pizzas.each do |pizza| %>
         <tr>
-          <td><%= pizza.name %></td>
-          <td><%= pizza.toppings.map(&:name).join(', ') %></td>
+          <td><%= pizza.name.capitalize %></td>
+          <td><%= pizza.toppings.map { |topping| topping.name.capitalize }.join(', ') %></td>
         </tr>
       <% end %>
     </tbody>

@@ -20,16 +20,15 @@ RSpec.feature "Pizza management", type: :feature do
     expect(page).to have_current_path(toppings_path)
   end
   
-  scenario 'User can see the menu' do
-    topping = Topping.create!(name: "Mushrooms")
-    topping2 = Topping.create!(name: "Pineapple")
-    pizza = Pizza.create!(name: 'ew', toppings: [topping])
+  scenario 'User can see the menu with correct capitalization' do
+    topping = Topping.create!(name: "mushrooms")
+    topping2 = Topping.create!(name: "pineapple")
+    pizza = Pizza.create!(name: 'ew', toppings: [topping, topping2])
     visit '/'
-    click_on 'Toppings Manager'
 
     expect(page).to have_text("Mushrooms")
     expect(page).to have_text("Pineapple")
     expect(page).to have_text("Menu")
-    expect(page).to have_text("ew")
+    expect(page).to have_text("Ew")
   end
 end
