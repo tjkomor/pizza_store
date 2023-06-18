@@ -30,8 +30,10 @@ class PizzasController < ApplicationController
 
   def update
     if @pizza.update(pizza_params)
+      flash[:notice] = 'Pizza was successfully created.'
       redirect_to @pizza, notice: 'Pizza was successfully updated.'
     else
+      flash[:notice] = 'blahhhhhhhhh'
       render :edit
     end
   end

@@ -24,11 +24,11 @@ class ToppingsController < ApplicationController
   def update
     @topping = Topping.find(params[:id])
     if @topping.update(topping_params)
-      flash[:notice] = 'Topping was successfully updated.'
+      redirect_to toppings_path
     else
-      flash[:alert] = 'There was an error updating the topping.'
+      flash[:notice] = 'There was an error updating the topping: ' + @topping.errors.full_messages.to_sentence
+      render :edit
     end
-    redirect_to toppings_path
   end
 
   def destroy
