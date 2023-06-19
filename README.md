@@ -13,7 +13,7 @@ Before you begin, ensure you have met the following requirements:
 To install the Pizza Store Rails App, follow these steps:
 
 1. Clone the repository:
-  `git clone https://github.com/username/pizza_store.git`
+  `git clone https://github.com/tjkomor/pizza_store.git`
 
 2. Navigate to the project directory:
   `cd pizza_store`
