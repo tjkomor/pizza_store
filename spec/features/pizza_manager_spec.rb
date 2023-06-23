@@ -68,6 +68,20 @@ RSpec.feature "Pizza management", type: :feature do
       expect(page).to have_text("not great pizza")
     end
     
+    scenario "User edits the name of a pizza to name that already exists" do
+      Pizza.create!(name: 'not great pizza')
+      topping = Topping.create!(name: "Mushrooms")
+      Topping.create!(name: "Pineapple")
+      pizza = Pizza.create!(name: 'ew', toppings: [topping])
+      visit "/pizzas/#{pizza.id}/edit"
+  
+      fill_in "Pizza Name", with: "not great pizza"
+  
+      click_button "Update Pizza"
+  
+      expect(page).to_not have_text("Pizza was successfully updated")
+    end
+    
     scenario "User edits the combination of a pizza" do
       topping = Topping.create!(name: "Mushrooms")
       topping2 = Topping.create!(name: "Pineapple")
